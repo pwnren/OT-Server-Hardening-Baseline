@@ -1,8 +1,8 @@
 ## Create Dedicated OUs (Critical for Separation)
 1. Open Group Policy Management (gpmc.msc)
 2. Create OUs:
-   OU=OT-Servers
-   OU=Jump-Hosts
+   - OU=OT-Servers
+   - OU=Jump-Hosts
 4. Move appropriate computer objects into correct OU
 
 ⚠ Never mix Jump Hosts and OT servers in same OU.
