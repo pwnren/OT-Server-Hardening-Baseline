@@ -23,7 +23,7 @@ The objective is to implement a defense in depth security posture across authent
 This baseline applies to:
 
 - Windows Server 2016 / 2019 / 2022
-- Domain-joined OT servers
+- Domain joined OT servers
 - Historian servers
 - Jump hosts (Level 3.5)
 - Supervisory systems at Level 3/2
@@ -31,7 +31,7 @@ This baseline applies to:
 This baseline does not apply to:
 - PLCs or embedded controllers
 - Workstation HMIs without domain membership
-- Vendor-managed black-box appliances
+- Vendor managed black box appliances
 ---
 ## Threat Model Considerations
 
@@ -67,7 +67,7 @@ Administrative access is enforced through a dedicated jump host. No direct RDP f
 - SMBv1 disabled
 - LAPS implementation for local admin control
 - Restricted administrative group membership
-- Built-in Administrator account hardening
+- Built in Administrator account hardening
 
 ## Remote Access Hardening
 - RDP restricted to dedicated security group
@@ -193,7 +193,7 @@ Industrial environments require stricter uptime, segmentation, and administrativ
 |----------|---------------|-------------------|
 | Jump Host Enforcement | Direct PLC/server access | Tiered Admin Model |
 | Historian Server Isolation | Production disruption | Firewall Segmentation |
-| Block IT-to-Level 2 Routing | Plant compromise | Network ACL / Firewall |
+| Block IT to Level 2 Routing | Plant compromise | Network ACL / Firewall |
 | Disable Automatic Updates (Controlled OT Patch Cycle) | Unplanned downtime | WSUS Staging Policy |
 | No Internet Access at Level 3 | Ransomware ingress | Egress Filtering |
 
