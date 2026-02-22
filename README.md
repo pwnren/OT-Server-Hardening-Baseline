@@ -94,11 +94,81 @@ Industrial environments require stricter uptime, segmentation, and administrativ
 
 ## Hardening Control Matrix
 
+## Hardening Control Matrix
+
+### Identity & Authentication Controls
+
 | Control | Risk Mitigated | Enforcement Method |
 |----------|---------------|-------------------|
-| Disable SMBv1 | Worm propagation | PowerShell + GPO |
-| NTLMv2 Only | Credential downgrade attacks | Security Option GPO |
-| RDP Restriction | Lateral movement | Security group policy |
-| Advanced Audit Logging | Lack of visibility | Advanced Audit Policy |
-| Disable Print Spooler | Remote exploit risk | Service control |
+| Enforce Strong Password Policy | Weak credential compromise | Account Policy GPO |
+| Account Lockout Policy | Brute force attacks | Account Lockout GPO |
+| NTLMv2 Only | Credential downgrade attacks | Security Options GPO |
+| Disable LM Hash Storage | Offline password cracking | Security Options GPO |
+| Restrict Local Administrator Membership | Privilege abuse | Restricted Groups GPO |
+| Implement LAPS | Shared admin password reuse | Microsoft LAPS Policy |
+| Disable WDigest | Cleartext credential exposure | Registry / GPO |
+| Remove Domain Admin Interactive Logon | Credential theft | Deny Logon GPO |
+
+---
+
+### Network & Lateral Movement Controls
+
+| Control | Risk Mitigated | Enforcement Method |
+|----------|---------------|-------------------|
 | Firewall Default Deny | Unauthorized access | Windows Firewall GPO |
+| Disable SMBv1 | Worm propagation | PowerShell + GPO |
+| SMB Signing Required | Man-in-the-middle attacks | GPO |
+| Disable NetBIOS | Reconnaissance | NIC Configuration |
+| Restrict NTLM Outbound | NTLM relay attacks | Security Options GPO |
+| Block Outbound Internet (OT Servers) | Command & control beaconing | Firewall Rules |
+| Disable IPv6 (if unused) | Security policy bypass | NIC / Registry |
+
+---
+
+### Remote Access Controls
+
+| Control | Risk Mitigated | Enforcement Method |
+|----------|---------------|-------------------|
+| Restrict RDP to Security Group | Lateral movement | Security Group Policy |
+| Require Network Level Authentication | Credential theft | RDP Policy GPO |
+| Disable Unused WinRM | Remote exploitation | GPO |
+| Enforce Session Timeout | Hijacked sessions | Local Policy / GPO |
+
+---
+
+### Service & Attack Surface Reduction
+
+| Control | Risk Mitigated | Enforcement Method |
+|----------|---------------|-------------------|
+| Disable Print Spooler | Remote exploit risk | Service Control |
+| Remove Unused Roles & Features | Expanded attack surface | Server Manager / PowerShell |
+| Disable TLS 1.0 / 1.1 | Crypto downgrade attacks | Registry (SCHANNEL) |
+| Enforce TLS 1.2+ | Weak encryption | Registry |
+| AppLocker / WDAC | Malware execution | GPO Application Control |
+| Enable Defender ASR Rules | Exploit chains & ransomware | Defender Policy |
+| Disable Anonymous SID Enumeration | Reconnaissance | Security Options GPO |
+
+---
+
+### Logging & Monitoring Controls
+
+| Control | Risk Mitigated | Enforcement Method |
+|----------|---------------|-------------------|
+| Advanced Audit Logging | Lack of visibility | Advanced Audit Policy |
+| Enable Process Creation Logging (4688) | Malware execution | GPO |
+| Enable PowerShell Script Block Logging | Obfuscated attacks | GPO |
+| Increase Security Log Size | Log overwrite | Event Log Policy |
+| Centralized Log Forwarding | Blind spots | Windows Event Forwarding |
+| Enable Object Access Auditing | Unauthorized file access | Advanced Audit Policy |
+
+---
+
+### OT-Specific Security Controls
+
+| Control | Risk Mitigated | Enforcement Method |
+|----------|---------------|-------------------|
+| Jump Host Enforcement | Direct PLC/server access | Tiered Admin Model |
+| Historian Server Isolation | Production disruption | Firewall Segmentation |
+| Block IT-to-Level 2 Routing | Plant compromise | Network ACL / Firewall |
+| Disable Automatic Updates (Controlled OT Patch Cycle) | Unplanned downtime | WSUS Staging Policy |
+| No Internet Access at Level 3 | Ransomware ingress | Egress Filtering |
