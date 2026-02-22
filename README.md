@@ -15,7 +15,7 @@ This project provides a structured security baseline for hardening Windows Serve
 - Centralized logging & monitoring
 - Segmentation aware access controls
 
-The objective is to enforce layered defense across authentication, network access, logging, service hardening, and privilege management while maintaining operational stability in OT environments.
+The objective is to implement a defense in depth security posture across authentication, administrative access, network segmentation, logging, and service hardening while preserving availability requirements unique to OT environments.
 
 ---
 ## Architecture Alignment
