@@ -53,7 +53,7 @@ Level 3.5 (Industrial DMZ) – Jump host and management isolation
 
 Level 3/2 (OT Servers) – Restricted workload access with controlled administrative paths
 
-Administrative access is enforced through a dedicated jump host tier. No direct lateral RDP from enterprise systems into OT workloads is permitted.
+Administrative access is enforced through a dedicated jump host. No direct RDP from enterprise systems into OT workloads is permitted.
 
 ✅ Suitable For
 - Enterprise IT environments
@@ -99,7 +99,7 @@ Administrative access is enforced through a dedicated jump host tier. No direct 
 - GPO backup templates
 - PowerShell enforcement scripts
 - OU design recommendations
-- Deployment *should* be staged and validated in a lab prior to production rollout, particularly in ICS environments.
+- Deployment *should* be staged and validated in a lab prior to production rollout, particularly in OT/ICS environments.
 
 ## OT Environment Hardening Enhancements
 
