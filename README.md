@@ -14,7 +14,9 @@ This project provides a structured security baseline for hardening Windows Serve
 - Advanced audit policy enforcement
 - Centralized logging & monitoring
 - Segmentation aware access controls
+
 The objective is to implement a defense in depth security posture across authentication, administrative access, network segmentation, logging, and service hardening while preserving availability requirements unique to OT environments.
+
 ---
 ## Scope
 
