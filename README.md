@@ -16,7 +16,32 @@ This project provides a structured security baseline for hardening Windows Serve
 - Segmentation aware access controls
 
 The objective is to implement a defense in depth security posture across authentication, administrative access, network segmentation, logging, and service hardening while preserving availability requirements unique to OT environments.
+---
+## Scope
 
+This baseline applies to:
+
+- Windows Server 2016 / 2019 / 2022
+- Domain-joined OT servers
+- Historian servers
+- Jump hosts (Level 3.5)
+- Supervisory systems at Level 3/2
+
+This baseline does not apply to:
+- PLCs or embedded controllers
+- Workstation HMIs without domain membership
+- Vendor-managed black-box appliances
+---
+## Threat Model Considerations
+
+This baseline is designed to mitigate:
+
+- IT to OT lateral movement
+- Ransomware propagation via SMB and RDP
+- Credential theft and replay attacks
+- Unauthorized administrative access
+- Logging blind spots
+- Remote exploitation of exposed services
 ---
 ## Architecture Alignment
 
@@ -161,7 +186,7 @@ Industrial environments require stricter uptime, segmentation, and administrativ
 
 ---
 
-### OT-Specific Security Controls
+### OT Specific Security Controls
 
 | Control | Risk Mitigated | Enforcement Method |
 |----------|---------------|-------------------|
@@ -170,3 +195,11 @@ Industrial environments require stricter uptime, segmentation, and administrativ
 | Block IT-to-Level 2 Routing | Plant compromise | Network ACL / Firewall |
 | Disable Automatic Updates (Controlled OT Patch Cycle) | Unplanned downtime | WSUS Staging Policy |
 | No Internet Access at Level 3 | Ransomware ingress | Egress Filtering |
+
+---
+## Framework Alignment
+
+- CIS Microsoft Windows Server Benchmark
+- ISA/IEC 62443-3-3 (System Security Requirements)
+- NIST 800-82 (Guide to ICS Security)
+
