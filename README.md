@@ -94,8 +94,6 @@ Industrial environments require stricter uptime, segmentation, and administrativ
 
 ## Hardening Control Matrix
 
-## Hardening Control Matrix
-
 ### Identity & Authentication Controls
 
 | Control | Risk Mitigated | Enforcement Method |
