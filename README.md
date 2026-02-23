@@ -48,11 +48,11 @@ This baseline is designed to mitigate:
 
 This baseline aligns to Purdue Model segmentation principles:
 
-Level 5 (Enterprise IT) – Domain-level identity enforcement
+Level 5 (Enterprise IT): Domain-level identity enforcement
 
-Level 3.5 (Industrial DMZ) – Jump host and management isolation
+Level 3.5 (Industrial DMZ): Jump host and management isolation
 
-Level 3/2 (OT Servers) – Restricted workload access with controlled administrative paths
+Level 3/2 (OT Servers): Restricted workload access with controlled administrative paths
 
 Administrative access is enforced through a dedicated jump host. No direct RDP from enterprise systems into OT workloads is permitted.
 
