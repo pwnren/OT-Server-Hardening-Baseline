@@ -1,4 +1,4 @@
-## Create Dedicated OUs (Critical for Separation)
+## Create Dedicated OUs (Critical)
 1. Open Group Policy Management (gpmc.msc)
 2. Create OUs:
    - OU=OT-Servers
