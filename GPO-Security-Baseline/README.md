@@ -5,19 +5,19 @@
    - OU=Jump-Hosts
 4. Move appropriate computer objects into correct OU
 
-⚠ Never mix Jump Hosts and OT servers in same OU.
+⚠ Not recommend to mix Jump Hosts and OT servers in same OU.
 ## Create Separate GPOs
 Create these GPOs:
 - GPO-OT-Server-Baseline
 - GPO-Jump-Host-Baseline
 - GPO-Domain-Security-Baseline
 
-Link accordingly:
+Link:
 - Domain baseline → Domain root
 - OT baseline → OT-Servers OU
 - Jump baseline → Jump-Hosts OU
 
-## DOMAIN-LEVEL SECURITY (Both OT + Jump)
+## Domain Level Security (Both OT + Jump)
 Password Policy
 Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies > Password Policy
 Set:
@@ -25,7 +25,7 @@ Set:
 - Enforce password history: 24
 - Maximum password age: 60–90 days (validate OT service accounts)
 
-## NTLMv2 Enforcement
+## NTLMv2 
 Computer Configuration > Windows Settings > Security Settings > Local Policies > Security Options
 Setting:
 Network security: LAN Manager authentication level
@@ -33,12 +33,12 @@ Set to:
 Send NTLMv2 responses only. Refuse LM & NTLM
 ⚠ Validate legacy OT systems first.
 
-## Disable SMBv1 (PowerShell Startup Script)
+## Disable SMBv1 (.PS1 Startup Script)
 Disable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol -NoRestart
 Add to:
 Computer Configuration > Policies > Windows Settings > Scripts (Startup)
 
-# JUMP HOST HARDENING
+# Jump Host Hardening
 GPO Path:
 Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment
 Setting:
@@ -66,11 +66,11 @@ Computer Configuration > Administrative Templates > Network > DNS Client
 Set:
 Turn off multicast name resolution = Enabled
 
-## Disable NetBIOS (Powershell Startup Script)
+## Disable NetBIOS (.PS1 Startup Script)
 wmic nicconfig where TcpipNetbiosOptions=0 call SetTcpipNetbios 2
 Deploy via Startup Script GPO.
 
-# OT SERVER HARDENING
+# OT Sever Hardening
 ## Prevent Forced Reboots
 Path:
 Computer Configuration > Administrative Templates > Windows Components > Windows Update
@@ -100,7 +100,7 @@ Computer Configuration > Policies > Windows Settings > Security Settings > Syste
 Set:
 Print Spooler = Disabled
 
-# AUDIT & LOGGING
+# Audit & Logging
 Path:
 Computer Configuration > Policies > Windows Settings > Security Settings > Advanced Audit Policy Configuration
 Enable:
@@ -115,11 +115,11 @@ New-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies
 -Name "ProcessCreationIncludeCmdLine_Enabled" -Value 1 -PropertyType DWORD -Force
 Deploy via GPO Preference.
 
-# Security Log Size (Compliance Retention)
+# Security Log Size 
 Path:
 Security Options > Security: Specify the maximum log file size (KB)
 
-# FIREWALL BASELINE (Both)
+# Firewall Baseline (Both) Depending on environment, typically have third party firewall vendor
 Default Deny Inbound
 Path:
 Windows Defender Firewall > Properties
@@ -127,7 +127,7 @@ Set:
 - Inbound: Block (default)
 - Outbound: Allow (controlled per role)
 
-# Restrict Management Ports
+# Restrict Ports
 Create inbound rules for:
 - RDP (3389)
 - WinRM (5985/5986)
@@ -150,7 +150,7 @@ Verify:
 - Firewall rules present
 - Audit policies active
 
-⚠ OT Safety Reminders
+⚠ OT Reminders
 Before applying to production:
 - Validate vendor compatibility
 - Test in lab
